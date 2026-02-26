@@ -1,9 +1,7 @@
-{% extends 'flor/base.html' %}
-{% load static %}
+{% extends 'flor/base.html' %}  {# Cambié producto por flor #}
 
 {% block contenido %}
-
-<h2>Formulario Flor</h2>
+<h1>Formulario de Flor</h1>
 
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
@@ -11,6 +9,5 @@
     <button type="submit">Guardar</button>
 </form>
 
-<a class="btn" href="{% url 'lista_flores' %}">Volver</a>
-
+<a href="{% url 'lista_flores' %}">Volver a la lista de flores</a>
 {% endblock %}

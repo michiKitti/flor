@@ -5,7 +5,9 @@
 
 <h1>Flores</h1>
 
-<a href="{% url 'crear_flor' %}" class="btn">Crear flor</a>
+<a href="{% url 'crear_flor' %}" class="btn btn-success mb-3">
+Nueva Flor
+</a>
 
 <div class="contenedor-flores">
 
@@ -23,8 +25,8 @@
 
         <p>{{ flor.descripcion }}</p>
 
-        <a href="{% url 'eliminar_flor' flor.id %}" class="btn-eliminar">
-            Eliminar
+        <a href="#" class="btn btn-danger">
+    Eliminar
         </a>
 
     </div>
