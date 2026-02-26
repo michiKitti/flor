@@ -15,10 +15,6 @@ class FlorForm(forms.ModelForm):
                 'class': 'form-control'
             }),
 
-            'precio': forms.NumberInput(attrs={
-                'class': 'form-control'
-            }),
-
             'imagen': forms.ClearableFileInput(attrs={
                 'class': 'form-control'
             }),

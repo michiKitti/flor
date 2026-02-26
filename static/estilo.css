@@ -1,226 +1,61 @@
+:root {
+    --primary-pink: #d81b60;
+    --soft-pink: #fce4ec;
+    --dark-pink: #880e4f;
+}
+
 body {
-    background: linear-gradient(135deg, #fff0f5, #f8e1ea);
-    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #fdfbfb;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #b40789;
 }
 
-
-/* TITULOS */
-
-h1, h2 {
-    color: #8b3a62;
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 20px;
+.navbar-brand {
+    font-weight: 800;
+    letter-spacing: 1px;
 }
 
-
-/* BOTONES */
-
-.btn, button {
-
-    background: linear-gradient(135deg, #a64d79, #8b3a62);
-
-    color: white;
-
-    padding: 10px 20px;
-
-    text-decoration: none;
-
-    border-radius: 8px;
-
-    border: none;
-
-    font-weight: bold;
-
-    transition: all 0.3s ease;
-
+.btn-primary {
+    background-color: var(--primary-pink);
+    border-color: var(--primary-pink);
 }
 
-
-.btn:hover, button:hover {
-
-    background: linear-gradient(135deg, #8b3a62, #6d2c4f);
-
-    transform: scale(1.05);
-
+.btn-primary:hover {
+    background-color: var(--dark-pink);
+    border-color: var(--dark-pink);
 }
 
-
-/* CONTENEDOR */
-
-.contenedor {
-
-    display: flex;
-
-    flex-wrap: wrap;
-
-    justify-content: center;
-
-    gap: 20px;
-
+.bg-soft-pink {
+    background-color: var(--soft-pink) !important;
 }
 
+.text-pink {
+    color: var(--primary-pink) !important;
+}
 
-/* TARJETAS */
-
+/* Card Improvements */
 .card {
-
-    border: none;
-
-    padding: 15px;
-
-    margin: 10px;
-
-    width: 260px;
-
-    text-align: center;
-
-    border-radius: 12px;
-
-    background-color: white;
-
-    box-shadow: 0 6px 15px rgba(139, 58, 98, 0.2);
-
-    transition: transform 0.3s;
-
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
-
 
 .card:hover {
-
-    transform: translateY(-5px);
-
+    box-shadow: 0 14px 28px rgba(179, 4, 149, 0.1), 0 10px 10px rgba(0,0,0,0.08) !important;
 }
 
-
-/* IMAGEN */
-
-.imagen {
-
-    width: 100%;
-
-    height: 200px;
-
+.imagen-ajustada {
+    height: 250px;
     object-fit: cover;
-
-    border-radius: 10px;
-
-    margin-bottom: 10px;
-
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
 }
 
-
-/* FORMULARIO */
-
-form {
-
-    background-color: white;
-
-    padding: 25px;
-
-    border-radius: 12px;
-
-    box-shadow: 0 6px 15px rgba(139, 58, 98, 0.2);
-
-}
-
-
-/* INPUTS */
-
+/* Form Styling */
 input, textarea, select {
-
-    width: 100%;
-
-    padding: 10px;
-
-    margin-top: 5px;
-
-    margin-bottom: 15px;
-
-    border-radius: 8px;
-
-    border: 1px solid #d8a7b8;
-
+    border: 1px solid #dee2e6 !important;
+    padding: 10px !important;
 }
 
-
-/* HEADER */
-
-header {
-
-    background: linear-gradient(135deg, #a64d79, #8b3a62);
-
-    padding: 15px;
-
-    text-align: center;
-
-}
-
-
-header a {
-
-    color: white;
-
-    text-decoration: none;
-
-    margin: 10px;
-
-    font-weight: bold;
-
-}
-
-
-header a:hover {
-
-    text-decoration: underline;
-
-}
-
-.barra-rosa {
-
-    background: linear-gradient(135deg, #8b3a62, #a64d79);
-
-}
-
-.barra-rosa {
-
-    background: linear-gradient(135deg, #8b3a62, #a64d79);
-
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-
-}
-/* Franja superior */
-.barra {
-    background-color: #C08081; /* rosa vieja */
-    padding: 20px;
-}
-
-/* Contenedor del formulario */
-.formulario {
-    background-color: white;
-    padding: 40px;
-    width: 600px; /* mas grande */
-    margin: 50px auto;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-}
-
-/* Inputs mas grandes */
-.formulario input,
-.formulario select,
-.formulario textarea {
-    width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    font-size: 16px;
-}
-
-/* Botón */
-.formulario button {
-    width: 100%;
-    padding: 15px;
-    background-color: #C08081;
-    color: white;
-    border: none;
-    font-size: 18px;
+input:focus, textarea:focus, select:focus {
+    border-color: var(--primary-pink) !important;
+    box-shadow: 0 0 0 0.25rem rgba(216, 27, 96, 0.25) !important;
 }

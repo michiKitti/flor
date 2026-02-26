@@ -2,41 +2,89 @@
 {% load static %}
 
 {% block contenido %}
-
-<h1>Flores</h1>
-
-<a href="{% url 'crear_flor' %}" class="btn btn-success mb-3">
-Nueva Flor
-</a>
-
-<div class="contenedor-flores">
-
-    {% for flor in flores %}
-
-    <div class="card">
-
-        {% if flor.imagen %}
-            <img src="{{ flor.imagen.url }}" width="200">
-        {% else %}
-            <img src="{% static 'img/sin-imagen.png' %}" width="200">
-        {% endif %}
-
-        <h3>{{ flor.nombre }}</h3>
-
-        <p>{{ flor.descripcion }}</p>
-
-        <a href="#" class="btn btn-danger">
-    Eliminar
-        </a>
-
-    </div>
-
-    {% empty %}
-
-    <p>No hay flores registradas</p>
-
-    {% endfor %}
-
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="mb-0">💐 Nuestras Flores</h1>
+    <a href="{% url 'crear_flor' %}" class="btn btn-success shadow-sm">
+        <i class="bi bi-plus-lg"></i> Nueva Flor
+    </a>
 </div>
 
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for flor in flores %}
+    <div class="col">
+        <div class="card h-100 shadow-sm border-0">
+            {% if flor.imagen %}
+                <img src="{{ flor.imagen.url }}" class="card-img-top imagen-ajustada" alt="{{ flor.nombre }}">
+            {% else %}
+                <img src="{% static 'img/sin-imagen.png' %}" class="card-img-top imagen-ajustada" alt="Sin imagen">
+            {% endif %}
+            
+            <div class="card-body text-center">
+                <h5 class="card-title fw-bold">{{ flor.nombre }}</h5>
+                <p class="card-text text-muted"></p>
+                
+                <div class="d-grid gap-2">
+                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalFlor{{ flor.id }}">
+                        Ver Detalles
+                    </button>
+                    <div class="d-flex gap-2">
+                        <a href="{% url 'editar_flor' flor.id %}" class="btn btn-warning btn-sm flex-fill">Editar</a>
+                        <a href="{% url 'eliminar_flor' flor.id %}" class="btn btn-danger btn-sm flex-fill" onclick="return confirm('¿Estás seguro de eliminar esta flor?')">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Detalles -->
+    <div class="modal fade" id="modalFlor{{ flor.id }}" tabindex="-1" aria-labelledby="modalLabel{{ flor.id }}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-soft-pink border-0">
+                    <h5 class="modal-title fw-bold" id="modalLabel{{ flor.id }}">{{ flor.nombre }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-3">
+                        {% if flor.imagen %}
+                            <img src="{{ flor.imagen.url }}" class="img-fluid rounded shadow-sm" style="max-height: 300px;">
+                        {% endif %}
+                    </div>
+                    <h6 class="fw-bold">Descripción:</h6>
+                    <p>{{ flor.descripcion|linebreaks }}</p>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center py-5">
+        <p class="fs-4 text-muted">No hay flores registradas aún.</p>
+    </div>
+    {% endfor %}
+</div>
+
+<style>
+    .bg-soft-pink {
+        background-color: #fce4ec;
+    }
+    .text-pink {
+        color: #d81b60;
+    }
+    .imagen-ajustada {
+        height: 250px;
+        object-fit: cover;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+    .card {
+        border-radius: 12px;
+        transition: transform 0.2s ease-in-out;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+    }
+</style>
 {% endblock %}

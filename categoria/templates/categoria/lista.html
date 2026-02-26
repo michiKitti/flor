@@ -1,17 +1,66 @@
 {% extends 'flor/base.html' %}
 
 {% block contenido %}
-<h1>Lista de Categorías</h1>
-<a href="{% url 'crear_categoria' %}" class="btn">Crear Categoría</a>
-<ul>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="mb-0">🏷️ Nuestras Categorías</h1>
+    <a href="{% url 'crear_categoria' %}" class="btn btn-success shadow-sm">
+        <i class="bi bi-plus-lg"></i> Nueva Categoría
+    </a>
+</div>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
     {% for categoria in categorias %}
-    <li>
-        {{ categoria.nombre }} - {{ categoria.descripcion }}
-        <a href="{% url 'editar_categoria' categoria.id %}">Editar</a>
-        <a href="{% url 'eliminar_categoria' categoria.id %}">Eliminar</a>
-    </li>
+    <div class="col">
+        <div class="card h-100 shadow-sm border-0 bg-light">
+            <div class="card-body text-center">
+                <div class="display-4 mb-3">📁</div>
+                <h5 class="card-title fw-bold">{{ categoria.nombre }}</h5>
+                
+                <div class="d-grid gap-2 mt-4">
+                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalCat{{ categoria.id }}">
+                        Ver Detalles
+                    </button>
+                    <div class="d-flex gap-2">
+                        <a href="{% url 'editar_categoria' categoria.id %}" class="btn btn-warning btn-sm flex-fill">Editar</a>
+                        <a href="{% url 'eliminar_categoria' categoria.id %}" class="btn btn-danger btn-sm flex-fill" onclick="return confirm('¿Estás seguro de eliminar esta categoría?')">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Detalles -->
+    <div class="modal fade" id="modalCat{{ categoria.id }}" tabindex="-1" aria-labelledby="modalLabelCat{{ categoria.id }}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header bg-light border-0">
+                    <h5 class="modal-title fw-bold" id="modalLabelCat{{ categoria.id }}">{{ categoria.nombre }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="fw-bold">Descripción:</h6>
+                    <p>{{ categoria.descripcion|linebreaks }}</p>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     {% empty %}
-    <li>No hay categorías.</li>
+    <div class="col-12 text-center py-5">
+        <p class="fs-4 text-muted">No hay categorías registradas aún.</p>
+    </div>
     {% endfor %}
-</ul>
+</div>
+
+<style>
+    .card {
+        border-radius: 12px;
+        transition: transform 0.2s ease-in-out;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+    }
+</style>
 {% endblock %}
