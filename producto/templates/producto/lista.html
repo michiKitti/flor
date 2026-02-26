@@ -1,0 +1,22 @@
+{% extends 'flor/base.html' %}
+{% load static %}
+
+{% block contenido %}
+<h1>Lista de Productos</h1>
+<a href="{% url 'crear_producto' %}" class="btn">Crear Producto</a>
+<div class="contenedor">
+    {% for producto in productos %}
+    <div class="card">
+        {% if producto.imagen %}
+            <img src="{{ producto.imagen.url }}" class="imagen">
+        {% endif %}
+        <h3>{{ producto.nombre }}</h3>
+        <p>{{ producto.descripcion }}</p>
+        <a href="{% url 'editar_producto' producto.id %}">Editar</a>
+        <a href="{% url 'eliminar_producto' producto.id %}">Eliminar</a>
+    </div>
+    {% empty %}
+    <p>No hay productos.</p>
+    {% endfor %}
+</div>
+{% endblock %}

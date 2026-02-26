@@ -1,0 +1,17 @@
+{% extends 'flor/base.html' %}
+
+{% block contenido %}
+<h1>Lista de Categorías</h1>
+<a href="{% url 'crear_categoria' %}" class="btn">Crear Categoría</a>
+<ul>
+    {% for categoria in categorias %}
+    <li>
+        {{ categoria.nombre }} - {{ categoria.descripcion }}
+        <a href="{% url 'editar_categoria' categoria.id %}">Editar</a>
+        <a href="{% url 'eliminar_categoria' categoria.id %}">Eliminar</a>
+    </li>
+    {% empty %}
+    <li>No hay categorías.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

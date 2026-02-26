@@ -1,0 +1,15 @@
+{% extends 'flor/base.html' %}
+
+{% block titulo %}
+Inicio
+{% endblock %}
+
+{% block contenido %}
+
+<h2>Bienvenido a la Floristeria 🌸</h2>
+
+<a href="{% url 'lista_flores' %}">
+    Ver flores
+</a>
+
+{% endblock %}

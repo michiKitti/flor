@@ -1,0 +1,36 @@
+body {
+    background-color: white;
+    font-family: Arial;
+}
+
+h1, h2 {
+    color: #c48b9f;
+}
+
+.btn, button {
+    background-color: #c48b9f;
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 6px;
+    border: none;
+}
+
+.contenedor {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    border: 1px solid #eee;
+    padding: 15px;
+    margin: 10px;
+    width: 250px;
+    text-align: center;
+}
+
+.imagen {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}

@@ -1,0 +1,40 @@
+{% extends 'flor/base.html' %}
+{% load static %}
+
+{% block contenido %}
+
+<h1>Flores</h1>
+
+<a href="{% url 'crear_flor' %}" class="btn">Crear flor</a>
+
+<div class="contenedor-flores">
+
+    {% for flor in flores %}
+
+    <div class="card">
+
+        {% if flor.imagen %}
+            <img src="{{ flor.imagen.url }}" width="200">
+        {% else %}
+            <img src="{% static 'img/sin-imagen.png' %}" width="200">
+        {% endif %}
+
+        <h3>{{ flor.nombre }}</h3>
+
+        <p>{{ flor.descripcion }}</p>
+
+        <a href="{% url 'eliminar_flor' flor.id %}" class="btn-eliminar">
+            Eliminar
+        </a>
+
+    </div>
+
+    {% empty %}
+
+    <p>No hay flores registradas</p>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
