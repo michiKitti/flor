@@ -21,7 +21,10 @@
             
             <div class="card-body text-center">
                 <h5 class="card-title fw-bold">{{ flor.nombre }}</h5>
-                <p class="card-text text-muted"></p>
+                <p class="card-text text-muted mb-1">
+                    <span class="fw-bold text-success">${{ flor.precio }}</span> | 
+                    <span>Stock: {{ flor.cantidad }}</span>
+                </p>
                 
                 <div class="d-grid gap-2">
                     <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalFlor{{ flor.id }}">
@@ -50,6 +53,10 @@
                             <img src="{{ flor.imagen.url }}" class="img-fluid rounded shadow-sm" style="max-height: 300px;">
                         {% endif %}
                     </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <div><h6 class="fw-bold mb-0">Precio:</h6><span class="text-success fw-bold fs-5">${{ flor.precio }}</span></div>
+                        <div><h6 class="fw-bold mb-0">Stock:</h6><span class="badge bg-secondary fs-6">{{ flor.cantidad }} unidades</span></div>
+                    </div>
                     <h6 class="fw-bold">Descripción:</h6>
                     <p>{{ flor.descripcion|linebreaks }}</p>
                 </div>
@@ -66,25 +73,4 @@
     {% endfor %}
 </div>
 
-<style>
-    .bg-soft-pink {
-        background-color: #fce4ec;
-    }
-    .text-pink {
-        color: #d81b60;
-    }
-    .imagen-ajustada {
-        height: 250px;
-        object-fit: cover;
-        border-top-left-radius: 12px;
-        border-top-right-radius: 12px;
-    }
-    .card {
-        border-radius: 12px;
-        transition: transform 0.2s ease-in-out;
-    }
-    .card:hover {
-        transform: translateY(-5px);
-    }
-</style>
 {% endblock %}
